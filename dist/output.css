@@ -588,6 +588,10 @@ video {
   }
 }
 
+.float-right {
+  float: right;
+}
+
 .m-5 {
   margin: 1.25rem;
 }
@@ -601,12 +605,20 @@ video {
   display: flex;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
 .flex-col {
   flex-direction: column;
 }
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border-2 {
@@ -632,6 +644,11 @@ video {
   padding: 0.75rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -640,4 +657,9 @@ video {
 .text-violet-600 {
   --tw-text-opacity: 1;
   color: rgb(124 58 237 / var(--tw-text-opacity));
+}
+
+.text-yellow-200 {
+  --tw-text-opacity: 1;
+  color: rgb(254 240 138 / var(--tw-text-opacity));
 }
