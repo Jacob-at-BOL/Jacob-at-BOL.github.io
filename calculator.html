@@ -1,15 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
     <link rel="stylesheet" href="./dist/output.css">
 </head>
-<body>
-<section class="container flex justify-center mx-auto bg-slate-800 border-2 border-violet-600 rounded p-3 m-5">
-    <div class="flex flex-col">
+<body class="bg-slate-950">
+<section class="container flex flex-col md:flex-row mx-auto bg-slate-800 border-2 border-violet-600 rounded p-3 m-5">
+    <div class="flex flex-col justify-center">
         <h1 class="text-6xl text-violet-600">Calculator</h1>
     </div>
 </section>
+<section class="container flex mx-auto bg-slate-800 m-t-2 p-3">
+    <nav class="text-fuchsia-600">
+        <a href="/">Home</a>
+        <a href="./calculator.html">Calculator</a>
+    </nav>
+</section>
+<section class="container flex mx-auto bg-slate-800 m-t-2 p-3">
+    <div id="calculator" class="p-5 border-2 border-white flex flex-col w-1/2 mx-auto rounded-sm">
+        <span id="input-value" class="p-2 min-h-10 text-violet-600 bg-white mb-5"></span>
+        <div id="button-holder" class="grid grid-cols-4 gap-1">
+            <div id="number-buttons" class="col-span-3 grid grid-cols-3 gap-1">
+            </div>
+            <div id="function-buttons" class="grid grid-rows-3 gap-1">
+                <button class="bg-cyan-400 text-black aspect-square" onclick="addValues()" type="button" value="+">+</button>
+                <button class="bg-cyan-400 text-black aspect-square" onclick="fillTape(this)" type="button" value="-">-</button>
+                <button class="bg-cyan-400 text-black aspect-square" onclick="doMath(this)" type="button" value="=">=</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<template id="calculator-button">
+    <button class="bg-cyan-400 text-black aspect-square" onclick="fillTape(this)" type="button"></button>
+</template>
+<script>
+
+    let currentValue = 0;
+
+    function doMath(){
+        let inputTape = document.querySelector(`#input-value`);
+        inputTape.innerText = currentValue + parseInt(inputTape.innerText);
+    }
+
+    function addValues(){
+        let inputTape = document.querySelector(`#input-value`);
+        currentValue = parseInt(inputTape.innerText);
+        inputTape.innerText = '';
+    }
+
+    function fillTape(a){
+        let inputTape = document.querySelector(`#input-value`);
+        if (inputTape) {
+            inputTape.innerHTML += a.value;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function (){
+        let calculatorButton = document.querySelector(`template#calculator-button`);
+        let numberButtonsHolder = document.querySelector(`#number-buttons`);
+        // let temp = document.querySelector('template');
+        // let clon = temp.content.cloneNode(true);
+        // document.body.appendChild(clon);
+        if (calculatorButton && numberButtonsHolder){
+            let x = 1;
+            for (x; x<=9; x++){
+                let tempClone = calculatorButton.content.cloneNode(true);
+                let newButton = tempClone.querySelector(`button`);
+                newButton.innerText = x;
+                newButton.value = x;
+                console.log(tempClone.querySelector(`button`));
+                //newButton.value = x;
+                //newButton.innerHTML = x;
+                numberButtonsHolder.appendChild(tempClone);
+            }
+        }
+    });
+</script>
 </body>
 </html>
